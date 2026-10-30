@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#111210">
+<meta name="description" content="Explore movies, TV shows, series, action, comedy, and animation on Filmhub.">
+<title>Filmhub — Find your next obsession</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#111210;--surface:#1c1e1a;--ink:#f4f2e9;--muted:#a2a69a;--accent:#d6f66c;--line:#34372e}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"DM Sans",sans-serif}
+button,input{font:inherit}
+button,a,input{-webkit-tap-highlight-color:transparent}
+button{cursor:pointer}
+a{color:inherit;text-decoration:none}
+button:focus-visible,a:focus-visible,input:focus-visible{outline:2px solid var(--accent);outline-offset:5px}
+header{height:90px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;gap:24px;padding:0 5vw}
+.logo{font-family:"Barlow Condensed",sans-serif;font-weight:800;font-size:36px;letter-spacing:-1px}
+.logo span{color:var(--accent)}
+.header-note{font-size:11px;text-transform:uppercase;letter-spacing:2px;color:var(--muted)}
+.saved-button{background:none;color:var(--ink);border:1px solid var(--line);padding:11px 16px;border-radius:30px;font-size:12px;transition:.2s}
+.saved-button:hover,.saved-button.active{border-color:var(--accent);color:var(--accent)}
+main{max-width:1600px;margin:auto;padding:0 5vw}
+.hero{display:grid;grid-template-columns:1.1fr 1fr;min-height:460px;align-items:center;border-bottom:1px solid var(--line);gap:5vw;padding:48px 0}
+.eyebrow{display:flex;align-items:center;gap:10px;font-size:10px;font-weight:700;letter-spacing:2px;color:var(--accent);text-transform:uppercase}
+.eyebrow::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--accent)}
+h1,h2,h3{font-family:"Barlow Condensed",sans-serif;margin:0}
+h1{font-size:clamp(64px,7.5vw,116px);line-height:.88;letter-spacing:-2px;margin:24px 0}
+h1 em{font-style:normal;color:var(--accent)}
+.hero-copy p{color:var(--muted);font-size:14px;line-height:1.8;max-width:370px}
+.hero-link{display:inline-flex;gap:35px;align-items:center;margin-top:18px;padding-bottom:8px;border-bottom:1px solid var(--accent);font-size:12px;font-weight:700}
+.hero-link:hover{color:var(--accent)}
+.feature{position:relative;overflow:hidden;min-height:350px;background:#202820;border:1px solid #47513d;isolation:isolate}
+.feature::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at 65% 35%,#a5b47599,transparent 50%),repeating-linear-gradient(90deg,transparent 0 44px,#0b100f99 45px 48px),linear-gradient(145deg,#182123,#4d6047);z-index:-3}
+.feature::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,#080b09 0%,transparent 85%);z-index:-1}
+.sun{position:absolute;width:140px;height:140px;border-radius:50%;background:#d4e6a8;right:20%;top:26px;box-shadow:0 0 85px #c9dd9255;z-index:-2}
+.runner{position:absolute;width:65px;height:180px;right:30%;top:105px;background:#0c1412;clip-path:polygon(44% 0,67% 0,75% 10%,65% 23%,100% 53%,83% 60%,60% 39%,72% 70%,93% 100%,65% 100%,45% 76%,21% 100%,0 100%,30% 63%,28% 39%,5% 59%,0 43%,32% 20%,32% 8%);transform:rotate(-8deg);z-index:-2}
+.feature-top{position:absolute;top:22px;left:24px;right:24px;display:flex;justify-content:space-between;font-size:10px;text-transform:uppercase;letter-spacing:2px}
+.feature-top span:first-child{background:var(--accent);color:#111;padding:7px 10px;font-weight:700}
+.feature-top span:last-child{padding-top:7px}
+.feature-bottom{position:absolute;bottom:24px;left:24px;right:24px}
+.feature-bottom small{color:var(--accent);font-size:10px;letter-spacing:2px}
+.feature-bottom h2{font-size:54px;line-height:1.05;margin:8px 0}
+.feature-bottom p{font-size:11px;color:#c0c8b5;margin:0}
+.feature-open{position:absolute;bottom:28px;right:24px;border:1px solid #a9b492;background:#ffffff10;color:white;border-radius:50%;width:44px;height:44px;font-size:22px;transition:.2s}
+.feature-open:hover{background:var(--accent);color:#111;transform:rotate(-35deg)}
+.library{padding:40px 0 64px}
+.library-heading{display:flex;justify-content:space-between;gap:24px;align-items:center;margin-bottom:25px}
+.section-label{color:var(--muted);font-size:10px;letter-spacing:2px;margin-bottom:8px}
+h2{font-size:38px;letter-spacing:-.5px}
+.search{display:flex;align-items:center;gap:10px;border-bottom:1px solid #555a4c;padding:10px 0;width:275px;color:var(--muted)}
+.search input{width:100%;border:0;background:transparent;color:var(--ink);outline:none;font-size:12px}
+.toolbar{display:flex;justify-content:space-between;align-items:center;gap:20px;border-bottom:1px solid var(--line);margin-bottom:28px}
+.categories{display:flex;gap:26px;overflow-x:auto;scrollbar-width:none}
+.category{background:none;border:0;color:var(--muted);white-space:nowrap;padding:16px 0;font-size:12px;border-bottom:2px solid transparent;transition:.2s}
+.category:hover{color:var(--ink)}
+.category.active{color:var(--accent);border-color:var(--accent)}
+.count{font-size:10px;color:var(--muted);white-space:nowrap;letter-spacing:1px}
+.grid{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:28px 20px}
+.movie{min-width:0;animation:reveal .5s both;animation-delay:calc(var(--i)*45ms)}
+.poster-wrap{position:relative;aspect-ratio:2/3;overflow:hidden;background:var(--surface)}
+.poster-button{display:block;width:100%;height:100%;padding:0;border:0;background:none;text-align:left}
+.poster-button svg{width:100%;height:100%;display:block;transition:transform .4s,filter .4s}
+.poster-button:hover svg{transform:scale(1.05);filter:brightness(1.15)}
+.poster-button:active svg{transform:scale(1.02)}
+.poster-overlay{position:absolute;left:12px;bottom:12px;background:#10130dbd;backdrop-filter:blur(10px);padding:6px 9px;color:#e6ecd9;font-size:9px;letter-spacing:1px;pointer-events:none}
+.save{position:absolute;right:9px;top:9px;background:#0c100ec9;backdrop-filter:blur(6px);border:1px solid #ffffff40;color:white;width:30px;height:30px;border-radius:50%;font-size:20px;transition:.2s}
+.save:hover{background:var(--accent);color:#111;transform:scale(1.1)}
+.save.saved{background:var(--accent);color:#111}
+.movie h3{font-family:"DM Sans",sans-serif;font-size:12px;line-height:1.5;font-weight:600;margin-top:13px}
+.movie-meta{font-size:10px;color:var(--muted);margin-top:5px;display:flex;justify-content:space-between;gap:8px}
+.movie-meta span:last-child{color:#c6d4aa}
+.empty{grid-column:1/-1;padding:60px 0;text-align:center;color:var(--muted)}
+footer{border-top:1px solid var(--line);padding:28px 5vw;display:flex;justify-content:space-between;align-items:center;gap:24px;color:var(--muted);font-size:10px}
+footer .logo{font-size:26px;color:var(--ink)}
+.footer-note{max-width:420px;line-height:1.7;text-align:right}
+dialog{background:#1b1e18;color:var(--ink);border:1px solid #515943;width:min(640px,90vw);padding:0;max-height:85vh;overflow:auto}
+dialog::backdrop{background:#000c;backdrop-filter:blur(8px)}
+.modal-body{padding:35px}
+.modal-body h2{font-size:48px;margin:15px 0}
+.modal-body p{font-size:14px;line-height:1.8;color:var(--muted)}
+.modal-close{float:right;border:1px solid var(--line);background:none;color:var(--ink);width:32px;height:32px;font-size:20px}
+.modal-save{background:var(--accent);color:#151810;border:none;padding:13px 20px;font-weight:700;font-size:12px;margin-top:15px}
+.notice{font-size:11px!important;border-top:1px solid var(--line);padding-top:20px;margin-top:25px}
+.hero-copy,.feature{animation:reveal .8s both}
+.feature{animation-delay:.15s}
+@keyframes reveal{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+@media(min-width:1600px){header,footer{padding-left:calc((100vw - 1440px)/2);padding-right:calc((100vw - 1440px)/2)}}
+@media(max-width:1100px){.grid{grid-template-columns:repeat(4,minmax(0,1fr))}.categories{gap:20px}.hero{gap:30px}.count{display:none}}
+@media(max-width:700px){header{height:74px}.header-note{display:none}.hero{grid-template-columns:1fr;padding:35px 0;gap:30px}.hero-copy p{max-width:100%}h1{font-size:80px}.feature{min-height:300px}.library-heading{align-items:start;flex-direction:column;gap:18px}.search{width:100%}.grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:24px 12px}.categories{width:100%}.library{padding-top:30px}.movie h3{font-size:11px}.movie-meta{font-size:9px}footer{align-items:start}.footer-note{max-width:230px}}
+@media(max-width:420px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}h1{font-size:72px}.saved-button{padding:9px 12px}.feature-bottom h2{font-size:45px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<header>
+<a class="logo" href="#" aria-label="Filmhub home">filmhub<span>®</span></a>
+<span class="header-note">Good stories. No endless scrolling.</span>
+<button class="saved-button" id="watchlistButton" aria-pressed="false">My watchlist <span id="savedCount">0</span></button>
+</header>
+<main>
+<section class="hero" aria-labelledby="heroTitle">
+<div class="hero-copy">
+<div class="eyebrow">Your next great watch starts here</div>
+<h1 id="heroTitle">LESS SCROLL.<br>MORE <em>CINEMA.</em></h1>
+<p>Big-screen adventures. One-more-episode nights. Find the stories that stay with you.</p>
+<a class="hero-link" href="#browse">Explore the collection <span aria-hidden="true">↗</span></a>
+</div>
+<div class="feature">
+<div class="sun"></div><div class="runner"></div>
+<div class="feature-top"><span>In the spotlight</span><span>01 / Filmhub picks</span></div>
+<div class="feature-bottom"><small>RUN. SURVIVE. DISCOVER.</small><h2>THE MAZE RUNNER</h2><p>2014 &nbsp; / &nbsp; Sci-fi · Action &nbsp; / &nbsp; 1h 53m</p></div>
+<button class="feature-open" id="featureOpen" aria-label="View Maze Runner details">↗</button>
+</div>
+</section>
+<section class="library" id="browse" aria-labelledby="libraryTitle">
+<div class="library-heading">
+<div><div class="section-label">THE COLLECTION / CURATED FOR YOU</div><h2 id="libraryTitle">Discover something great.</h2></div>
+<label class="search"><span aria-hidden="true">⌕</span><input id="search" type="search" placeholder="Search a title..." aria-label="Search titles"></label>
+</div>
+<div class="toolbar">
+<nav class="categories" aria-label="Browse categories" id="categories"></nav>
+<span class="count" id="resultCount" aria-live="polite"></span>
+</div>
+<div class="grid" id="movies"></div>
+</section>
+</main>
+<footer><a class="logo" href="#">filmhub<span>®</span></a><div class="footer-note">Made for the love of a good story.<br>Original illustrated cover art. A discovery catalog, not a streaming service.</div></footer>
+<dialog id="details" aria-labelledby="detailTitle">
+<div class="modal-body">
+<button class="modal-close" id="closeModal" aria-label="Close details">×</button>
+<div class="eyebrow" id="detailCategory"></div>
+<h2 id="detailTitle"></h2>
+<p id="detailDescription"></p>
+<button class="modal-save" id="modalSave"></button>
+<p class="notice">Filmhub helps you discover and save titles. Playback and streaming links are not provided. Cover artwork is an original stylized illustration, not an official movie poster.</p>
+</div>
+</dialog>
+<script>
+const films=[
+["Spiderman","Movies,Action",2002,"hero","#b52330","#152b51","A young hero discovers that extraordinary power comes with extraordinary responsibility."],
+["The Runner","Movies,Action",2021,"run","#b47d39","#252b26","A tense, high-stakes journey where every decision could change everything."],
+["Dark Wolf","Movies",2003,"wolf","#7b8b9a","#151b31","A shadowy creature brings terror to the city after dark."],
+["Maze Runner","Movies,Action",2014,"maze","#8a9d6b","#1b302a","Trapped in a mysterious maze, a group of young survivors searches for a way out."],
+["The Day of The Jackal","Movies,TV Shows,Series",2024,"target","#d5bd90","#313e43","An elusive assassin and a determined intelligence officer enter a dangerous game of pursuit."],
+["Beauty in Black","Movies,TV Shows,Series",2024,"portrait","#b89456","#251e2d","Two very different lives collide in a world of power, family secrets, and ambition."],
+["Young Sheldon","TV Shows,Series,Comedy",2017,"orbit","#d0a94b","#325a69","A brilliant young mind navigates school, family, and growing up in East Texas."],
+["Game of Thrones","TV Shows,Series",2011,"crown","#8b9da5","#19222d","Noble families battle for power in a land of uneasy alliances and ancient threats."],
+["Blood Hounds","TV Shows,Series,Action",2023,"fight","#c24230","#232826","Two young boxers take on a ruthless world of debt and violence."],
+["On My Block","Comedy",2018,"city","#e7a865","#70628b","Four friends face the joys and challenges of growing up in their Los Angeles neighborhood."],
+["Tag","Comedy",2018,"run","#ebc546","#276f72","A group of lifelong friends takes an annual game of tag to outrageous extremes."],
+["Just Go With It","Comedy",2011,"sun","#e8c388","#2896a1","A complicated romantic cover story leads to an unpredictable island getaway."],
+["The Other Guy","Comedy",2010,"fight","#d19f64","#464f6b","An unlikely partnership turns an everyday situation into comic chaos."],
+["The Nice Guy","Comedy",2016,"city","#e99b78","#894860","An offbeat mystery unfolds with sharp humor and unexpected allies."],
+["Spiderman Brand New Day","Action",2026,"hero","#d13c32","#173d50","A new chapter of web-slinging adventure. Explore a fresh start for the friendly neighborhood hero."],
+["Taken","Action",2008,"target","#a49782","#202b32","A former operative draws on his particular skills to rescue his kidnapped daughter."],
+["I am Legend","Action",2007,"city","#d3b06b","#39443b","A lone survivor searches for hope in an abandoned city transformed by disaster."],
+["The Equalizer","Action",2014,"target","#bb4937","#23292a","A quiet man with a dangerous past returns to action to protect the vulnerable."],
+["Avengers End Game","Action",2019,"orbit","#a68fbb","#292846","Earth's heroes unite for a final stand to reverse an unimaginable loss."],
+["Ruthless","Series",2020,"portrait","#b0875d","#392c28","A woman becomes entangled in a secretive community with dangerous rules."],
+["Avatar the Last Air Bender","Series,Animation",2024,"orbit","#d9be87","#3b7d84","A young Avatar must learn to master the elements and restore balance to the world."]
+].map((f,id)=>({id,title:f[0],categories:f[1].split(","),year:f[2],art:f[3],color:f[4],dark:f[5],description:f[6]}));
+const categories=["Movies","TV Shows","Series","Action","Comedy","Animation"];
+let category="Movies",watchlistOnly=false,saved;
+try{saved=new Set(JSON.parse(localStorage.getItem("filmhub-watchlist")||"[]"));}catch{saved=new Set();}
+const $=id=>document.getElementById(id);
+const escapeHTML=s=>String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+function poster(f){
+const designs={
+hero:`<path d="M0 0L240 360M240 0L0 360M120 0V360M0 180H240M0 60Q120 180 240 60M0 300Q120 180 240 300" fill="none" stroke="#ffffff" stroke-opacity=".19"/><path d="M105 91Q120 74 135 91L142 120 134 137 153 190 186 215 175 230 137 210 131 260 154 308 130 313 111 272 95 312 72 307 99 248 98 205 63 229 53 215 85 182 105 136 98 118Z" fill="#111b2d"/><path d="M107 105L117 112 112 118ZM133 105L123 112 128 118Z" fill="#fff"/>`,
+run:`<path d="M0 320L110 140 135 140 240 320" fill="${f.color}" opacity=".35"/><path d="M0 300L240 120M0 240L240 60M0 180L240 0" stroke="#fff" opacity=".12" stroke-width="3"/><circle cx="128" cy="113" r="15" fill="#101713"/><path d="M119 130L144 138 160 175 145 184 129 155 114 191 150 230 138 247 106 215 81 265 63 259 91 188 98 153 68 180 58 165Z" fill="#101713"/>`,
+wolf:`<circle cx="120" cy="112" r="65" fill="#d5e2e2" opacity=".65"/><path d="M48 224L61 99 97 139 139 139 178 98 189 226 120 268Z" fill="#111821"/><path d="M75 184L107 193 91 203ZM163 184L132 193 148 203Z" fill="#e7b94d"/><path d="M106 224L134 224 120 240Z" fill="#8295a4"/>`,
+maze:`<g fill="none" stroke="${f.color}" stroke-width="13" opacity=".6"><path d="M15 310V40H225V310M48 310V75H190V275H85V110H155V240H120V145"/></g><path d="M0 290L120 170 240 290V360H0" fill="#091712" opacity=".8"/><circle cx="122" cy="199" r="9" fill="#060d09"/><path d="M114 211H129L139 266H124L116 240 104 268H92Z" fill="#060d09"/>`,
+target:`<circle cx="140" cy="151" r="92" fill="none" stroke="${f.color}" stroke-width="2"/><circle cx="140" cy="151" r="61" fill="none" stroke="${f.color}" stroke-opacity=".5"/><path d="M140 30V272M20 151H240" stroke="${f.color}" opacity=".6"/><circle cx="112" cy="113" r="24" fill="#111918"/><path d="M82 144L139 144 171 288H50Z" fill="#111918"/><path d="M102 144L115 178 127 144" fill="${f.color}" opacity=".5"/>`,
+portrait:`<circle cx="122" cy="131" r="90" fill="none" stroke="${f.color}" stroke-width="1"/><path d="M85 127Q74 57 122 54Q171 60 162 137L143 160 150 180 190 220 204 310H37L52 220 98 180 101 158Z" fill="#141317"/><path d="M113 78Q152 76 148 123L130 146 117 138 106 106Z" fill="${f.color}" opacity=".6"/><path d="M98 183L122 235 150 183" fill="none" stroke="${f.color}" stroke-width="2"/>`,
+orbit:`<circle cx="120" cy="142" r="76" fill="${f.color}" opacity=".6"/><ellipse cx="120" cy="142" rx="108" ry="35" fill="none" stroke="#f3ead5" stroke-width="2" transform="rotate(-35 120 142)"/><ellipse cx="120" cy="142" rx="108" ry="35" fill="none" stroke="#f3ead5" stroke-opacity=".3" transform="rotate(35 120 142)"/><path d="M0 273L53 207 87 242 147 182 240 285V360H0Z" fill="#111e25"/><circle cx="122" cy="217" r="10" fill="#080f17"/><path d="M112 230H132L146 287H98Z" fill="#080f17"/>`,
+crown:`<path d="M35 131L62 172 79 106 120 157 160 106 178 172 207 131 188 224H52Z" fill="${f.color}" opacity=".8"/><path d="M60 232H183V245H60Z" fill="${f.color}"/><path d="M116 39H125V293H116ZM91 85H150V95H91Z" fill="#e0e6df"/><path d="M0 320L57 265 101 304 183 257 240 316V360H0" fill="#10171d"/>`,
+fight:`<path d="M-40 270L240 -10M0 340L280 60" stroke="${f.color}" stroke-width="40" opacity=".45"/><circle cx="85" cy="121" r="22" fill="#111815"/><path d="M65 147H104L137 235 99 272 44 248Z" fill="#111815"/><circle cx="164" cy="139" r="20" fill="#18231e"/><path d="M144 163H184L212 261 135 270 120 214Z" fill="#18231e"/>`,
+city:`<circle cx="165" cy="104" r="55" fill="${f.color}" opacity=".8"/><path d="M0 211H28V153H54V228H76V113H105V196H129V167H158V213H184V138H213V194H240V360H0Z" fill="#18272b"/><path d="M18 243H226M18 270H226M18 297H226" stroke="${f.color}" stroke-width="3" stroke-dasharray="7 13" opacity=".5"/>`,
+sun:`<circle cx="120" cy="133" r="70" fill="#f1d295"/><path d="M0 212Q60 193 120 214T240 212V360H0" fill="#246573"/><path d="M0 242Q60 223 120 244T240 242M0 270Q60 251 120 272T240 270" fill="none" stroke="#e5d6ac" opacity=".6"/><path d="M29 288Q54 179 39 105M39 105Q0 85 0 129M39 105Q79 80 94 122M39 105Q49 57 84 63" fill="none" stroke="#123f3b" stroke-width="9"/>`
+};
+const words=f.title.toUpperCase().split(" "),lines=[];let line="";
+words.forEach(w=>{if((line+" "+w).trim().length>17&&line){lines.push(line);line=w;}else line=(line+" "+w).trim();});if(line)lines.push(line);
+return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 360" role="img" aria-label="${escapeHTML(f.title)} illustrated cover"><defs><linearGradient id="bg${f.id}" x2="1" y2="1"><stop stop-color="${f.color}"/><stop offset="1" stop-color="${f.dark}"/></linearGradient><linearGradient id="shade${f.id}" x2="0" y2="1"><stop stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".9"/></linearGradient></defs><rect width="240" height="360" fill="url(#bg${f.id})"/>${designs[f.art]}<rect width="240" height="360" fill="url(#shade${f.id})"/><rect x="12" y="12" width="216" height="336" fill="none" stroke="#fff" stroke-opacity=".15"/><text x="120" y="30" text-anchor="middle" fill="#fff" opacity=".75" font-family="DM Sans,sans-serif" font-size="7" letter-spacing="3">FILMHUB COLLECTION</text>${lines.map((l,i)=>`<text x="120" y="${286-(lines.length-1)*24+i*24}" text-anchor="middle" fill="#f3eddc" font-family="Barlow Condensed,sans-serif" font-size="25" font-weight="700" letter-spacing="1">${escapeHTML(l)}</text>`).join("")}<text x="120" y="313" text-anchor="middle" fill="#e6ddc8" font-family="DM Sans,sans-serif" font-size="7" letter-spacing="3">${f.year} · ${escapeHTML(f.categories[0].toUpperCase())}</text></svg>`;
+}
+function render(){
+$("categories").innerHTML=categories.map(c=>`<button class="category ${c===category&&!watchlistOnly?"active":""}" aria-pressed="${c===category&&!watchlistOnly}" data-category="${c}">${c}</button>`).join("");
+const query=$("search").value.toLowerCase().trim();
+const list=films.filter(f=>(watchlistOnly?saved.has(f.id):f.categories.includes(category))&&f.title.toLowerCase().includes(query));
+$("resultCount").textContent=`${String(list.length).padStart(2,"0")} TITLES`;
+$("libraryTitle").textContent=watchlistOnly?"Your next-watch shortlist.":"Discover something great.";
+$("savedCount").textContent=saved.size;
+$("watchlistButton").classList.toggle("active",watchlistOnly);
+$("watchlistButton").setAttribute("aria-pressed",watchlistOnly);
+$("movies").innerHTML=list.length?list.map((f,i)=>`<article class="movie" style="--i:${i}"><div class="poster-wrap"><button class="poster-button" data-open="${f.id}" aria-label="View ${escapeHTML(f.title)} details">${poster(f)}</button><span class="poster-overlay">${f.categories.includes("Series")?"SERIES":"FILM"}</span><button class="save ${saved.has(f.id)?"saved":""}" data-save="${f.id}" aria-label="${saved.has(f.id)?"Remove":"Save"} ${escapeHTML(f.title)} ${saved.has(f.id)?"from":"to"} watchlist" aria-pressed="${saved.has(f.id)}">${saved.has(f.id)?"✓":"+"}</button></div><h3>${escapeHTML(f.title)}</h3><div class="movie-meta"><span>${f.year} · ${escapeHTML(category==="Movies"?f.categories[1]||"Movie":f.categories[0])}</span><span>↗</span></div></article>`).join(""):`<p class="empty">${query?"No matching titles. Try another search.":watchlistOnly?"Your watchlist is empty. Use the + on a cover to save a title.":"More titles are coming soon."}</p>`;
+}
+function toggleSave(id){saved.has(id)?saved.delete(id):saved.add(id);try{localStorage.setItem("filmhub-watchlist",JSON.stringify([...saved]));}catch{}render();}
+let currentFilm;
+function openDetails(id){currentFilm=films.find(f=>f.id===id);$("detailTitle").textContent=currentFilm.title;$("detailCategory").textContent=currentFilm.categories.join(" / ")+" · "+currentFilm.year;$("detailDescription").textContent=currentFilm.description;updateModal();$("details").showModal();}
+function updateModal(){$("modalSave").textContent=saved.has(currentFilm.id)?"✓ Saved — remove from watchlist":"+ Add to my watchlist";}
+$("categories").addEventListener("click",e=>{const b=e.target.closest("[data-category]");if(b){category=b.dataset.category;watchlistOnly=false;render();}});
+$("movies").addEventListener("click",e=>{const s=e.target.closest("[data-save]"),o=e.target.closest("[data-open]");if(s)toggleSave(Number(s.dataset.save));else if(o)openDetails(Number(o.dataset.open));});
+$("search").addEventListener("input",render);
+$("watchlistButton").addEventListener("click",()=>{watchlistOnly=!watchlistOnly;render();$("browse").scrollIntoView({behavior:matchMedia("(prefers-reduced-motion: reduce)").matches?"instant":"smooth"});});
+$("featureOpen").addEventListener("click",()=>openDetails(3));
+$("closeModal").addEventListener("click",()=>$("details").close());
+$("details").addEventListener("click",e=>{if(e.target===$("details")){const r=$("details").getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)$("details").close();}});
+$("modalSave").addEventListener("click",()=>{toggleSave(currentFilm.id);updateModal();});
+render();
+</script>
+</body>
+</html>
